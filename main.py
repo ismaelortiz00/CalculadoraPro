@@ -1,14 +1,10 @@
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
+
 from screens.calculadora import CalculadoraScreen
 from screens.convertidor import ConvertidorScreen
 from screens.historial import HistorialScreen
-from kivy.core.window import Window
-from kivy.utils import platform
-
-if platform != "android":
-    Window.size = (375, 667)
 
 
 class CalculadoraProApp(App):
