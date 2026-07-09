@@ -1,0 +1,345 @@
+#:kivy 2.3.1
+
+<CalcBtn@Button>:
+    bg: 0.13, 0.13, 0.13, 1
+    color: 1, 1, 1, 1
+    font_size: 22
+    background_normal: ""
+    background_down: ""
+    background_color: 0, 0, 0, 0
+    canvas.before:
+        Color:
+            rgba: self.bg
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25]
+
+<CardBtn@Button>:
+    bg: 0.12, 0.12, 0.12, 1
+    color: 1, 1, 1, 1
+    font_size: 14
+    background_normal: ""
+    background_down: ""
+    background_color: 0, 0, 0, 0
+    halign: "center"
+    valign: "middle"
+    text_size: self.size
+    canvas.before:
+        Color:
+            rgba: self.bg
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [18]
+
+<CalculadoraScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: 16
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.02, 0.02, 0.02, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: .08
+
+            Button:
+                text: "Calculadora"
+                background_color: 0,0,0,0
+                color: 1,.45,.05,1
+                font_size: 22
+                bold: True
+
+            Button:
+                text: "Convertidor"
+                background_color: 0,0,0,0
+                color: .6,.6,.6,1
+                font_size: 22
+                on_press: root.abrir_convertidor()
+
+            Button:
+                text: "⋮"
+                size_hint_x: .25
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                font_size: 30
+                on_press: root.abrir_historial()
+
+        Label:
+            text: root.historial
+            size_hint_y: .10
+            color: .5,.5,.5,1
+            font_size: 18
+            halign: "right"
+            text_size: self.size
+
+        Label:
+            text: root.display
+            size_hint_y: .18
+            color: 1,1,1,1
+            font_size: 48
+            bold: True
+            halign: "right"
+            valign: "middle"
+            text_size: self.size
+
+        GridLayout:
+            cols: 4
+            spacing: 10
+
+            CalcBtn:
+                text: "AC"
+                color: 1,.45,.05,1
+                on_press: root.limpiar()
+            CalcBtn:
+                text: "DEL"
+                color: 1,.45,.05,1
+                on_press: root.borrar()
+            CalcBtn:
+                text: "%"
+                color: 1,.45,.05,1
+                on_press: root.porcentaje()
+            CalcBtn:
+                text: "÷"
+                color: 1,.45,.05,1
+                on_press: root.agregar("/")
+
+            CalcBtn:
+                text: "√"
+                on_press: root.raiz()
+            CalcBtn:
+                text: "x²"
+                on_press: root.cuadrado()
+            CalcBtn:
+                text: "1/x"
+                on_press: root.inverso()
+            CalcBtn:
+                text: "×"
+                color: 1,.45,.05,1
+                on_press: root.agregar("*")
+
+            CalcBtn:
+                text: "7"
+                on_press: root.agregar("7")
+            CalcBtn:
+                text: "8"
+                on_press: root.agregar("8")
+            CalcBtn:
+                text: "9"
+                on_press: root.agregar("9")
+            CalcBtn:
+                text: "-"
+                color: 1,.45,.05,1
+                on_press: root.agregar("-")
+
+            CalcBtn:
+                text: "4"
+                on_press: root.agregar("4")
+            CalcBtn:
+                text: "5"
+                on_press: root.agregar("5")
+            CalcBtn:
+                text: "6"
+                on_press: root.agregar("6")
+            CalcBtn:
+                text: "+"
+                color: 1,.45,.05,1
+                on_press: root.agregar("+")
+
+            CalcBtn:
+                text: "1"
+                on_press: root.agregar("1")
+            CalcBtn:
+                text: "2"
+                on_press: root.agregar("2")
+            CalcBtn:
+                text: "3"
+                on_press: root.agregar("3")
+            CalcBtn:
+                text: "="
+                bg: 1,.45,.05,1
+                on_press: root.calcular()
+
+            CalcBtn:
+                text: "±"
+                on_press: root.cambiar_signo()
+            CalcBtn:
+                text: "0"
+                on_press: root.agregar("0")
+            CalcBtn:
+                text: "."
+                on_press: root.agregar(".")
+            CalcBtn:
+                text: "()"
+                on_press: root.agregar("(")
+
+<ConvertidorScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: 16
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.02,0.02,0.02,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: .08
+
+            Button:
+                text: "Calculadora"
+                background_color: 0,0,0,0
+                color: .6,.6,.6,1
+                font_size: 22
+                on_press: root.volver()
+
+            Button:
+                text: "Convertidor"
+                background_color: 0,0,0,0
+                color: 1,.45,.05,1
+                font_size: 22
+                bold: True
+
+        ScrollView:
+            GridLayout:
+                cols: 3
+                spacing: 10
+                size_hint_y: None
+                height: self.minimum_height
+
+                CardBtn:
+                    text: "💵\\nDivisas"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_divisas()
+                CardBtn:
+                    text: "📏\\nLongitud"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_longitud()
+                CardBtn:
+                    text: "⚖\\nMasa"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_masa()
+                CardBtn:
+                    text: "⬛\\nÁrea"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_area()
+                CardBtn:
+                    text: "⏱\\nTiempo"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_tiempo()
+                CardBtn:
+                    text: "💰\\nFinanzas"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_finanzas()
+                CardBtn:
+                    text: "💾\\nDatos"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_datos()
+                CardBtn:
+                    text: "📅\\nFecha"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_fecha()
+                CardBtn:
+                    text: "🏷\\nDescuento"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_descuento()
+                CardBtn:
+                    text: "🥤\\nVolumen"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_volumen()
+                CardBtn:
+                    text: "🔢\\nSistema"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_sistema()
+                CardBtn:
+                    text: "🚗\\nVelocidad"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_velocidad()
+                CardBtn:
+                    text: "🌡\\nTemp."
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_temperatura()
+                CardBtn:
+                    text: "⚕\\nIMC"
+                    size_hint_y: None
+                    height: 90
+                    on_press: root.abrir_imc()
+
+<HistorialScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: 16
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.02,0.02,0.02,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: .09
+
+            Button:
+                text: "←"
+                font_size: 30
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                on_press: root.volver()
+
+            Label:
+                text: root.titulo
+                font_size: 26
+                bold: True
+                color: 1,1,1,1
+
+            Button:
+                text: "🗑"
+                font_size: 24
+                background_color: 0,0,0,0
+                color: 1,.45,.05,1
+                on_press: root.eliminar_todo()
+
+        ScrollView:
+            GridLayout:
+                id: lista_historial
+                cols: 1
+                spacing: 15
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: .10
+            spacing: 10
+
+            Button:
+                text: "Recalcular"
+                background_color: 0,0,0,0
+                color: .7,.7,.7,1
+                on_press: root.recalcular()
+
+            Button:
+                text: "Eliminar"
+                background_color: 0,0,0,0
+                color: .7,.7,.7,1
+                on_press: root.eliminar_uno()
