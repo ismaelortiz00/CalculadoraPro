@@ -16,7 +16,7 @@ source.dir = .
 source.include_exts = py,png,jpg,jpeg,kv,atlas,ttf,json
 
 # Versión
-version = 1.1
+version = 1.2
 
 # Dependencias
 requirements = python3,kivy
@@ -25,7 +25,7 @@ requirements = python3,kivy
 orientation = portrait
 
 # Pantalla completa
-fullscreen = 0
+fullscreen = 1
 
 # Arquitecturas Android
 android.archs = arm64-v8a, armeabi-v7a
