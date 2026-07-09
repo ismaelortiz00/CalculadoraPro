@@ -40,6 +40,8 @@ android.api = 33
 # Generar APK
 android.debug_artifact = apk
 
+android.accept_sdk_license = True
+
 #
 # OSX Specific
 #
@@ -434,4 +436,4 @@ warn_on_root = 1
 #    Then, invoke the command line with the "demo" profile:
 #
 #buildozer --profile demo android debug
-#android.accept_sdk_license = True
+
