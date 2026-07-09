@@ -16,7 +16,7 @@ source.dir = .
 source.include_exts = py,png,jpg,jpeg,kv,atlas,ttf,json
 
 # Versión
-version = 1.2
+version = 1.3
 
 # Dependencias
 requirements = python3,kivy
